@@ -35,13 +35,21 @@ namespace SpaceSafari
         db.SaveChanges();
         Console.WriteLine($"Successfully Saved {newSpecies.Species}");
       }
-      else if (input == "all")
+      else if (input == "no")
       {
-        var allSpecies = db.AlienTypes.OrderBy(o => o.Species).ThenBy(t => t.CountOfTimesSeen);
-        foreach (var Races in allSpecies)
-        {
-          Console.WriteLine($"{Races.Species}, {Races.CountOfTimesSeen} ");
 
+        Console.WriteLine("Would you like to review Species you've already encountered?...");
+        Console.WriteLine(":=========================:");
+
+        input = Console.ReadLine();
+        if (input == "yes")
+        {
+          var allSpecies = db.AlienTypes.OrderBy(o => o.Species);
+          foreach (var Races in allSpecies)
+          {
+            Console.WriteLine($"{Races.Species}, {Races.Language}, {Races.LocationOfLastSeen}, {Races.Temperament}, {Races.CountOfTimesSeen}  ");
+
+          }
         }
       }
     }
